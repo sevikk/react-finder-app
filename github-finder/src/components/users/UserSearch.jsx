@@ -16,13 +16,12 @@ function UserSearch() {
       setAlert("Please enter something", "error");
     } else {
       const users = await searchUsers(text);
-      console.log(users);
       dispatch({
         type: 'SET_LOADING'
       })
       dispatch({
         type: "GET_USERS",
-        payload: users.items,
+        payload: users,
       });
       setText("");
     }
@@ -51,7 +50,7 @@ function UserSearch() {
           </div>
         </form>
       </div>
-      {users.length > 0 && (
+      {users?.length > 0 && (
         <div>
           <button onClick={() => dispatch({type: 'CLEAR_USERS'})} className="btn btn-ghost btn-lg">
             Clear
